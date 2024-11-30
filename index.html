@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Slicer Translation Assistant</title>
+	<!-- <link href="lib/bootstrap.min.css" rel="stylesheet"> -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="css/design.css">
+	<script src="lib/chart.min.js"></script>
+	<script type="module" src="js/app.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/js/all.min.js" integrity="sha512-6sSYJqDreZRZGkJ3b+YfdhB3MzmuP9R7X1QZ6g5aIXhRvR1Y/N/P47jmnkENm7YL3oqsmI6AK+V6AD99uWDnIw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+	<div class="container-fluid">
+		<header class="row">
+			<div class="offset-lg-2 col-lg-8">Slicer Translation Assistant</div>
+			<div class="col-lg-2 options-bar">
+				<i class="fa fa-home" title="Dashboard"></i>
+				<i class="fa fa-globe" title="Change current language" data-bs-toggle="modal" data-bs-target="#languageSettingsModal"></i>
+				<i class="fa fa-search" title="String Search"></i>
+			</div>
+		</header>
+		<main id="homePage">
+			<section class="row">
+				<aside class="col-md-6 text-center">
+					<h1>Slicer Core Translation Status</h1>
+					<canvas id="myChart"></canvas>
+				</aside>
+				<aside class="col-md-6 text-center">
+					<h1>Modules Translation Status</h1>
+					<canvas id="secondChart"></canvas>
+				</aside>
+			</section>
+			<section class="row">
+				<h1 class="with-separator">Other Components Status</h1>
+				<aside class="offset-md-1 col-md-10">
+					<table class="table table-hover table-bordered">
+						<thead>
+							<tr>
+								<th>Component</th>
+								<th>Translation rate</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+				</aside>
+			</section>
+		</main>
+	</div>
+	<div id="loaderBox">
+		<h1>Downloading resources...</h1>
+		<div class="loader"></div>
+	</div>
+	
+	<!-- Modals -->
+	<div class="modal fade" id="languageSettingsModal" tabindex="-1" aria-labelledby="languageModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header" style="text-align: center;">
+					<h1 class="modal-title fs-5" id="languageModalLabel">Language Settings</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body" style="text-align: center;">
+					<label for="languageList">Translation language</label><br><br>
+					<select id="languageList">
+						<option value="en">English</option>
+						<option value="af">Afrikaans</option>
+						<option value="ar_SA">Arabic (Saudi Arabia)</option>
+						<option value="ar">Arabic</option>
+						<option value="bn">Bengali</option>
+						<option value="ca">Catalan</option>
+						<option value="cs">Czech</option>
+						<option value="da">Danish</option>
+						<option value="de">German</option>
+						<option value="el">Greek</option>
+						<option value="en_US">English (United States)</option>
+						<option value="es_419">Spanish (Latin America)</option>
+						<option value="es">Spanish</option>
+						<option value="fi">Finnish</option>
+						<option value="fil">Filipino</option>
+						<option value="fr" selected="">French</option>
+						<option value="he">Hebrew</option>
+						<option value="hi">Hindi</option>
+						<option value="hu">Hungarian</option>
+						<option value="id">Indonesian</option>
+						<option value="it">Italian</option>
+						<option value="ja">Japanese</option>
+						<option value="km">Khmer (Central)</option>
+						<option value="ko">Korean</option>
+						<option value="nl">Dutch</option>
+						<option value="nb_NO">Norwegian Bokmål</option>
+						<option value="otk">Kokturk</option>
+						<option value="pl">Polish</option>
+						<option value="pt_BR">Portuguese (Brazil)</option>
+						<option value="pt_PT">Portuguese (Portugal)</option>
+						<option value="ro">Romanian</option>
+						<option value="ru">Russian</option>
+						<option value="sr_SP">Serbian</option>
+						<option value="sv">Swedish</option>
+						<option value="ta">Tamil</option>
+						<option value="tr">Turkish</option>
+						<option value="uk">Ukrainian</option>
+						<option value="uz">Uzbek</option>
+						<option value="vi">Vietnamese</option>
+						<option value="zh_Hans">Chinese (Simplified Han script)</option>
+						<option value="zh_Hant">Chinese (Traditional Han script)</option>
+						<option value="zgh">Tamazight (Standard Moroccan)</option>
+						<option value="fa">Persian</option>
+						<option value="ur">Urdu</option>
+						<option value="lt">Lithuanian</option>
+						<option value="pt">Portuguese</option>
+						<option value="sw">Swahili</option>
+						<option value="ang">English (Old)</option>
+						<option value="ab">Abkhazian</option>
+						<option value="te">Telugu</option>
+					</select>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+					<button type="button" class="btn btn-primary">Apply</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
