@@ -28,6 +28,12 @@ header .options-bar {
 	/* border: solid red 2px; */
 
 }
+header .options-bar *[class*="fa-"] {
+	cursor: pointer;
+}
+header .options-bar *[class*="fa-"]:hover {
+	color: whitesmoke;
+}
 main aside + aside {
 	border-left: solid lightgrey 2px;
 }
@@ -85,10 +91,4 @@ main table tbody tr:hover {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
-}
-header .options-bar *[class*="fa-"] {
-	cursor: pointer;
-}
-header .options-bar *[class*="fa-"]:hover {
-	color: whitesmoke;
 }

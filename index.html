@@ -17,9 +17,9 @@
 		<header class="row">
 			<div class="offset-lg-2 col-lg-8">Slicer Translation Assistant</div>
 			<div class="col-lg-2 options-bar">
-				<i class="fa fa-home" title="Dashboard"></i>
-				<i class="fa fa-globe" title="Change current language" data-bs-toggle="modal" data-bs-target="#languageSettingsModal"></i>
-				<i class="fa fa-search" title="String Search"></i>
+				<span><i class="fa fa-home" title="Dashboard"></i></span>
+				<span><i class="fa fa-globe" title="Language Settings" data-bs-toggle="modal" data-bs-target="#languageSettingsModal"></i></span>
+				<span><i class="fa fa-search" title="String Search"></i></span>
 			</div>
 		</header>
 		<main id="homePage">
@@ -48,6 +48,164 @@
 				</aside>
 			</section>
 		</main>
+		<main id="searchPage">
+			<div class="row">
+				<h1 class="with-separator">Search Options</h1>
+				<form class="offset-md-3 col-md-6">
+					<div class="mb-3">
+						<label class="form-label" for="moduleField">Module name</label>
+						<select class="form-select" id="moduleField">
+							<option value="all">All modules [7994]</option>
+							<option value="AddScalarVolumes">AddScalarVolumes [17]</option>
+							<option value="Annotations">Annotations [1]</option>
+							<option value="Cameras">Cameras [8]</option>
+							<option value="CastScalarVolume">CastScalarVolume [23]</option>
+							<option value="CheckerBoardFilter">CheckerBoardFilter [16]</option>
+							<option value="Colors">Colors [57]</option>
+							<option value="CreateDICOMSeries">CreateDICOMSeries [125]</option>
+							<option value="CropVolume">CropVolume [59]</option>
+							<option value="CropVolumeSequence">CropVolumeSequence [14]</option>
+							<option value="Ctk">Ctk [1296]</option>
+							<option value="CurvatureAnisotropicDiffusion">CurvatureAnisotropicDiffusion [21]</option>
+							<option value="DICOM">DICOM [63]</option>
+							<option value="DICOMLib">DICOMLib [52]</option>
+							<option value="DICOMPatcher">DICOMPatcher [27]</option>
+							<option value="DICOMPlugins">DICOMPlugins [55]</option>
+							<option value="Data" selected="">Data [46]</option>
+							<option value="DataProbe">DataProbe [40]</option>
+							<option value="Endoscopy">Endoscopy [41]</option>
+							<option value="ExecutionModelTour">ExecutionModelTour [128]</option>
+							<option value="ExtensionWizard">ExtensionWizard [66]</option>
+							<option value="ExtractSkeleton">ExtractSkeleton [25]</option>
+							<option value="FiducialRegistration">FiducialRegistration [24]</option>
+							<option value="GaussianBlurImageFilter">GaussianBlurImageFilter [13]</option>
+							<option value="GradientAnisotropicDiffusion">GradientAnisotropicDiffusion [23]</option>
+							<option value="GrayscaleFillHoleImageFilter">GrayscaleFillHoleImageFilter [11]</option>
+							<option value="GrayscaleGrindPeakImageFilter">GrayscaleGrindPeakImageFilter [11]</option>
+							<option value="GrayscaleModelMaker">GrayscaleModelMaker [27]</option>
+							<option value="HistogramMatching">HistogramMatching [20]</option>
+							<option value="ImageLabelCombine">ImageLabelCombine [15]</option>
+							<option value="ImportItkSnapLabel">ImportItkSnapLabel [7]</option>
+							<option value="LabelMapSmoothing">LabelMapSmoothing [24]</option>
+							<option value="Markups">Markups [403]</option>
+							<option value="MaskScalarVolume">MaskScalarVolume [19]</option>
+							<option value="MedianImageFilter">MedianImageFilter [15]</option>
+							<option value="MergeModels">MergeModels [12]</option>
+							<option value="ModelMaker">ModelMaker [51]</option>
+							<option value="ModelToLabelMap">ModelToLabelMap [16]</option>
+							<option value="Models">Models [69]</option>
+							<option value="MultiplyScalarVolumes">MultiplyScalarVolumes [17]</option>
+							<option value="N4ITKBiasFieldCorrection">N4ITKBiasFieldCorrection [37]</option>
+							<option value="OTHERS">OTHERS [2027]</option>
+							<option value="OrientScalarVolume">OrientScalarVolume [66]</option>
+							<option value="PETStandardUptakeValueComputation">PETStandardUptakeValueComputation [27]</option>
+							<option value="Plots">Plots [66]</option>
+							<option value="ProbeVolumeWithModel">ProbeVolumeWithModel [14]</option>
+							<option value="Reformat">Reformat [46]</option>
+							<option value="ResampleDTIVolume">ResampleDTIVolume [107]</option>
+							<option value="ResampleScalarVectorDWIVolume">ResampleScalarVectorDWIVolume [91]</option>
+							<option value="ResampleScalarVolume">ResampleScalarVolume [26]</option>
+							<option value="RobustStatisticsSegmenter">RobustStatisticsSegmenter [27]</option>
+							<option value="SampleData">SampleData [31]</option>
+							<option value="SceneViews">SceneViews [14]</option>
+							<option value="ScreenCapture">ScreenCapture [131]</option>
+							<option value="SegmentEditor">SegmentEditor [8]</option>
+							<option value="SegmentStatistics">SegmentStatistics [119]</option>
+							<option value="Segmentations">Segmentations [661]</option>
+							<option value="SelfTests">SelfTests [4]</option>
+							<option value="Sequences">Sequences [94]</option>
+							<option value="SimpleRegionGrowingSegmentation">SimpleRegionGrowingSegmentation [29]</option>
+							<option value="SlicerIGT">SlicerIGT [703]</option>
+							<option value="SlicerWelcome">SlicerWelcome [39]</option>
+							<option value="SubjectHierarchy">SubjectHierarchy [106]</option>
+							<option value="SubtractScalarVolumes">SubtractScalarVolumes [17]</option>
+							<option value="Tables">Tables [72]</option>
+							<option value="Terminologies">Terminologies [25]</option>
+							<option value="Texts">Texts [15]</option>
+							<option value="ThresholdScalarVolume">ThresholdScalarVolume [27]</option>
+							<option value="Transforms">Transforms [179]</option>
+							<option value="Units">Units [26]</option>
+							<option value="Utilities">Utilities [24]</option>
+							<option value="VectorToScalarVolume">VectorToScalarVolume [26]</option>
+							<option value="ViewControllers">ViewControllers [8]</option>
+							<option value="VolumeRendering">VolumeRendering [107]</option>
+							<option value="Volumes">Volumes [109]</option>
+							<option value="VotingBinaryHoleFillingImageFilter">VotingBinaryHoleFillingImageFilter [20]</option>
+							<option value="WebServer">WebServer [29]</option>
+						</select>
+					</div>
+					<div class="mb-3">
+						<label class="form-label" for="searchField">Text to search</label>
+						<input id="searchField" type="search" class="form-control" placeholder=""
+						title="Search by the english or the translated version of a string">
+					</div>
+					<div class="mb-3">
+						<input type="checkbox" id="hideTranslatedCheckbox" title="Hide already translated strings from the result">
+						<label class="form-label" for="hideTranslatedCheckbox" title="Hide already translated strings from the result">Hide translated
+						strings</label>
+					</div>
+				</form>
+			</div>
+			<div class="row">
+				<p class="col-md-12 my-3 h5" id="foundStringBox">Found strings : 39</p>
+				<aside class="col-md-12">
+					<table id="stringTable" class="table table-hover table-bordered">
+						<thead>
+							<tr>
+								<th>3D Slicer Module Name</th>
+								<th>String to translate</th>
+								<!-- <th>Translation</th> -->
+								<th>Translated</th>
+								<th>Weblate Translation Key</th>
+								<th colspan="2">Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>SlicerWelcome</td>
+								<td>Welcome</td>
+								<td><i class="fa fa-check" style="color: green;"></i></td>
+								<td>
+									<a href="#" target="_blank" title="Search this key in Weblate">
+										qSlicerWelcomeModuleWidget
+									</a>
+								</td>
+								<td>
+									<a href="#" stringid="3d-slicer|6001">
+										<i class="fa fa-info-circle" title="Show details of this string."></i>
+									</a>
+								</td>
+								<td>
+									<a href="#" target="_blank">
+										<i class="fa fa-edit" title="Translate this string on Weblate."></i>
+									</a>
+								</td>
+							</tr>
+							<tr>
+								<td>SlicerWelcome</td>
+								<td>New application version is available: %1</td>
+								<td><i class="fa fa-times"style="color: red;"></i></td>
+								<td>
+									<a href="#" target="_blank" title="Search this key in Weblate">
+										qSlicerWelcomeModuleWidget
+									</a>
+								</td>
+								<td>
+									<a href="#" stringid="3d-slicer|6001">
+										<i class="fa fa-info-circle" title="Show details of this string."></i>
+									</a>
+								</td>
+								<td>
+									<a href="#" target="_blank">
+										<i class="fa fa-edit" title="Translate this string on Weblate."></i>
+									</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</aside>
+			</div>
+		</main>
 	</div>
 	<div id="loaderBox">
 		<h1>Downloading resources...</h1>
@@ -63,59 +221,61 @@
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body" style="text-align: center;">
-					<label for="languageList">Translation language</label><br><br>
-					<select id="languageList">
-						<option value="en">English</option>
-						<option value="af">Afrikaans</option>
-						<option value="ar_SA">Arabic (Saudi Arabia)</option>
-						<option value="ar">Arabic</option>
-						<option value="bn">Bengali</option>
-						<option value="ca">Catalan</option>
-						<option value="cs">Czech</option>
-						<option value="da">Danish</option>
-						<option value="de">German</option>
-						<option value="el">Greek</option>
-						<option value="en_US">English (United States)</option>
-						<option value="es_419">Spanish (Latin America)</option>
-						<option value="es">Spanish</option>
-						<option value="fi">Finnish</option>
-						<option value="fil">Filipino</option>
-						<option value="fr" selected="">French</option>
-						<option value="he">Hebrew</option>
-						<option value="hi">Hindi</option>
-						<option value="hu">Hungarian</option>
-						<option value="id">Indonesian</option>
-						<option value="it">Italian</option>
-						<option value="ja">Japanese</option>
-						<option value="km">Khmer (Central)</option>
-						<option value="ko">Korean</option>
-						<option value="nl">Dutch</option>
-						<option value="nb_NO">Norwegian Bokmål</option>
-						<option value="otk">Kokturk</option>
-						<option value="pl">Polish</option>
-						<option value="pt_BR">Portuguese (Brazil)</option>
-						<option value="pt_PT">Portuguese (Portugal)</option>
-						<option value="ro">Romanian</option>
-						<option value="ru">Russian</option>
-						<option value="sr_SP">Serbian</option>
-						<option value="sv">Swedish</option>
-						<option value="ta">Tamil</option>
-						<option value="tr">Turkish</option>
-						<option value="uk">Ukrainian</option>
-						<option value="uz">Uzbek</option>
-						<option value="vi">Vietnamese</option>
-						<option value="zh_Hans">Chinese (Simplified Han script)</option>
-						<option value="zh_Hant">Chinese (Traditional Han script)</option>
-						<option value="zgh">Tamazight (Standard Moroccan)</option>
-						<option value="fa">Persian</option>
-						<option value="ur">Urdu</option>
-						<option value="lt">Lithuanian</option>
-						<option value="pt">Portuguese</option>
-						<option value="sw">Swahili</option>
-						<option value="ang">English (Old)</option>
-						<option value="ab">Abkhazian</option>
-						<option value="te">Telugu</option>
-					</select>
+					<div class="mb-3">
+						<label for="languageList" class="form-label">Translation language</label>
+						<select id="languageList" class="form-select">
+							<option value="en">English</option>
+							<option value="af">Afrikaans</option>
+							<option value="ar_SA">Arabic (Saudi Arabia)</option>
+							<option value="ar">Arabic</option>
+							<option value="bn">Bengali</option>
+							<option value="ca">Catalan</option>
+							<option value="cs">Czech</option>
+							<option value="da">Danish</option>
+							<option value="de">German</option>
+							<option value="el">Greek</option>
+							<option value="en_US">English (United States)</option>
+							<option value="es_419">Spanish (Latin America)</option>
+							<option value="es">Spanish</option>
+							<option value="fi">Finnish</option>
+							<option value="fil">Filipino</option>
+							<option value="fr" selected="">French</option>
+							<option value="he">Hebrew</option>
+							<option value="hi">Hindi</option>
+							<option value="hu">Hungarian</option>
+							<option value="id">Indonesian</option>
+							<option value="it">Italian</option>
+							<option value="ja">Japanese</option>
+							<option value="km">Khmer (Central)</option>
+							<option value="ko">Korean</option>
+							<option value="nl">Dutch</option>
+							<option value="nb_NO">Norwegian Bokmål</option>
+							<option value="otk">Kokturk</option>
+							<option value="pl">Polish</option>
+							<option value="pt_BR">Portuguese (Brazil)</option>
+							<option value="pt_PT">Portuguese (Portugal)</option>
+							<option value="ro">Romanian</option>
+							<option value="ru">Russian</option>
+							<option value="sr_SP">Serbian</option>
+							<option value="sv">Swedish</option>
+							<option value="ta">Tamil</option>
+							<option value="tr">Turkish</option>
+							<option value="uk">Ukrainian</option>
+							<option value="uz">Uzbek</option>
+							<option value="vi">Vietnamese</option>
+							<option value="zh_Hans">Chinese (Simplified Han script)</option>
+							<option value="zh_Hant">Chinese (Traditional Han script)</option>
+							<option value="zgh">Tamazight (Standard Moroccan)</option>
+							<option value="fa">Persian</option>
+							<option value="ur">Urdu</option>
+							<option value="lt">Lithuanian</option>
+							<option value="pt">Portuguese</option>
+							<option value="sw">Swahili</option>
+							<option value="ang">English (Old)</option>
+							<option value="ab">Abkhazian</option>
+							<option value="te">Telugu</option>
+						</select>
+					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
