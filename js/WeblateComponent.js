@@ -75,31 +75,12 @@ export class WeblateComponent {
 		return this.contexts[index];
 	}
 
-	// Returns the weblate search text of the given message
-	getSearchText(message) {
-		const messageText = this.getText(message.text);
-		const messageContext = this.getContext(message.context);
+	getSourceText(index) {
+		return this.sourceStrings[index];
+	}
 
-		// replace potential HTML entities by their equivalent characters
-		let searchText = messageText.includes('&') ? this.htmlDecode(messageText) : messageText;
-		const trimedSearchText = searchText.trim();
-
-		if (!searchText.includes(' ') || !searchText.includes(':')) {
-			if (trimedSearchText == searchText) {
-				// exact match search
-				searchText = `key:=${messageContext} AND source:="${searchText}"`;
-			}
-			else {
-				// partial match search
-				searchText = `key:=${messageContext} AND source:"${trimedSearchText}"`;
-			}
-		}
-		else {
-			// more generic search
-			searchText = `${messageContext} "${trimedSearchText}"`;
-		}
-
-		return searchText;
+	getTranslatedText(index) {
+		return this.translatedStringsByLanguage[this.language][index];
 	}
 
 	getModuleName(filename) {
@@ -156,7 +137,8 @@ export class WeblateComponent {
 	}
 
 	// returns the input with HTML entities replaced by their equivalent characters
-	static htmlDecode(html) {
+	// static htmlDecode(html) {
+	htmlDecode(html) {
 		var doc = new DOMParser().parseFromString(html, "text/html");
 		return doc.documentElement.textContent;
 	}
@@ -172,10 +154,20 @@ export class WeblateComponent {
 			this.isDownloading = false;
 			return;
 		}
+		// if the language doesn't exist for this component
+		// the following code is not already tested
+		else if (this.languagesAreDownloaded && !this.languages[language]) {
+			this.messagesByLanguage[this.language] = undefined;
+			this.translatedStringsByLanguage[this.language] = undefined;
+			this.tsFileIsDownloaded = true;
+			this.isDownloading = false;
+			return;
+		}
 
 		const xhr = new XMLHttpRequest();
 
 		xhr.onload = () => {
+			// ToDo: handle errors differently (specify a download error message ?)
 			if (xhr.status != 200) {
 				this.messagesByLanguage[this.language] = undefined;
 				this.translatedStringsByLanguage[this.language] = undefined;
@@ -219,7 +211,8 @@ export class WeblateComponent {
 						translations.push(item.innerHTML);
 					}
 
-					this.translatedStringsByLanguage[this.language].push(translations);
+					// many translations are joined into a single one, separated by |
+					this.translatedStringsByLanguage[this.language].push(translations.join('|'));
 				}
 
 				isTranslated = (!translation.innerHTML || translation.hasAttribute('type')) ? false : true;
@@ -245,6 +238,7 @@ export class WeblateComponent {
 				newMessage.context = contextIndex,
 				newMessage.translated = {}
 				newMessage.translated[this.language] = isTranslated;
+				newMessage.component = this;
 
 				this.messagesByLanguage[this.language].push(newMessage);
 
@@ -323,6 +317,29 @@ class Message {
 
 		// whether or not the string is translated, for each language
 		this.translated = undefined;
+
+		// reference of the associated WeblateComponent instance
+		this.component = undefined;
+	}
+
+	getSource() {
+		return this.component.getSourceText(this.text)
+	}
+
+	getTranslation() {
+		return this.component.getTranslatedText(this.text)
+	}
+
+	getContext() {
+		return this.component.getContext(this.context);
+	}
+
+	getModules() {
+		return Array.from(new Set(this.modules));
+	}
+
+	getModulesAsString() {
+		return Array.from(new Set(this.modules)).toString();
 	}
 
 	// whether or not the string has many locations

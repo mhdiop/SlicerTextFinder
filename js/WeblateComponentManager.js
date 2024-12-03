@@ -48,6 +48,10 @@ export class WeblateComponentManager {
 			this.weblateComponents.push(component);
 		}
 	}
+
+	getWeblateComponent(name) {
+		return this.weblateComponents.filter(component => [component.name, component.slug].includes(name))[0];
+	}
 	
 	getComponentsData() {
 		const componentsData = {};

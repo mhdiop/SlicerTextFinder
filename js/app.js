@@ -1,5 +1,6 @@
 import { APP_CONFIG } from "./Config.js";
 import { HomePage } from "./HomePage.js";
+import { SearchPage } from "./SearchPage.js";
 import { WeblateComponentManager } from "./WeblateComponentManager.js";
 
 window.onload = () => {
@@ -27,6 +28,7 @@ class AppManager {
 			this.homePage.setChartsData(componentsData, modulesData);
 		}
 		this.homePage.render();
+		new SearchPage(this.componentsManager);
 	}
 
 	onLanguageChanged(language) {

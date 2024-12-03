@@ -48,14 +48,23 @@
 				</aside>
 			</section>
 		</main>
-		<main id="searchPage">
+		<main id="searchPage" hidden>
 			<div class="row">
 				<h1 class="with-separator">Search Options</h1>
 				<form class="offset-md-3 col-md-6">
 					<div class="mb-3">
+						<label class="form-label" for="componentField">Weblate Component</label>
+						<select id="componentField" class="form-select">
+							<option value="3d-slicer">3D Slicer</option>
+							<option value="CTK">CTK</option>
+							<option value="SlicerIGT">SlicerIGT</option>
+							<option value="LanguagePacks">LanguagePacks</option>
+						</select>
+					</div>
+					<div class="mb-3">
 						<label class="form-label" for="moduleField">Module name</label>
 						<select class="form-select" id="moduleField">
-							<option value="all">All modules [7994]</option>
+							<option value="">All modules [7994]</option>
 							<option value="AddScalarVolumes">AddScalarVolumes [17]</option>
 							<option value="Annotations">Annotations [1]</option>
 							<option value="Cameras">Cameras [8]</option>
@@ -71,7 +80,7 @@
 							<option value="DICOMLib">DICOMLib [52]</option>
 							<option value="DICOMPatcher">DICOMPatcher [27]</option>
 							<option value="DICOMPlugins">DICOMPlugins [55]</option>
-							<option value="Data" selected="">Data [46]</option>
+							<option value="Data">Data [46]</option>
 							<option value="DataProbe">DataProbe [40]</option>
 							<option value="Endoscopy">Endoscopy [41]</option>
 							<option value="ExecutionModelTour">ExecutionModelTour [128]</option>
@@ -116,7 +125,7 @@
 							<option value="Sequences">Sequences [94]</option>
 							<option value="SimpleRegionGrowingSegmentation">SimpleRegionGrowingSegmentation [29]</option>
 							<option value="SlicerIGT">SlicerIGT [703]</option>
-							<option value="SlicerWelcome">SlicerWelcome [39]</option>
+							<option value="SlicerWelcome" selected="">SlicerWelcome [39]</option>
 							<option value="SubjectHierarchy">SubjectHierarchy [106]</option>
 							<option value="SubtractScalarVolumes">SubtractScalarVolumes [17]</option>
 							<option value="Tables">Tables [72]</option>
@@ -136,7 +145,7 @@
 					</div>
 					<div class="mb-3">
 						<label class="form-label" for="searchField">Text to search</label>
-						<input id="searchField" type="search" class="form-control" placeholder=""
+						<input id="searchField" type="search" class="form-control" placeholder="" value="welcome"
 						title="Search by the english or the translated version of a string">
 					</div>
 					<div class="mb-3">
@@ -144,12 +153,17 @@
 						<label class="form-label" for="hideTranslatedCheckbox" title="Hide already translated strings from the result">Hide translated
 						strings</label>
 					</div>
+					<div class="mb-3">
+						<!-- <label class="form-label" for="searchField">Text to search</label> -->
+						<input id="searchButton" type="button" class="form-control btn btn-primary" value="Search">
+					</div>
 				</form>
 			</div>
 			<div class="row">
-				<p class="col-md-12 my-3 h5" id="foundStringBox">Found strings : 39</p>
+				<p class="col-md-12 my-3 h5" id="foundStringBox" hidden>Found strings : 39</p>
 				<aside class="col-md-12">
-					<table id="stringTable" class="table table-hover table-bordered">
+					<table id="stringTable" class="table table-hover table-bordered" hidden>
+						<!-- <caption id="foundStringBox" class="my-3 h5">Found strings : 39</caption> -->
 						<thead>
 							<tr>
 								<th>3D Slicer Module Name</th>
@@ -164,7 +178,7 @@
 							<tr>
 								<td>SlicerWelcome</td>
 								<td>Welcome</td>
-								<td><i class="fa fa-check" style="color: green;"></i></td>
+								<td><i class="fa fa-check"></i></td>
 								<td>
 									<a href="#" target="_blank" title="Search this key in Weblate">
 										qSlicerWelcomeModuleWidget
@@ -184,7 +198,7 @@
 							<tr>
 								<td>SlicerWelcome</td>
 								<td>New application version is available: %1</td>
-								<td><i class="fa fa-times"style="color: red;"></i></td>
+								<td><i class="fa fa-xmark"></i></td>
 								<td>
 									<a href="#" target="_blank" title="Search this key in Weblate">
 										qSlicerWelcomeModuleWidget
