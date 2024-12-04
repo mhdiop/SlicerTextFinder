@@ -40,11 +40,7 @@ export class WeblateComponentManager {
 
 		for (const slug of Object.keys(this.components)) {
 			component = new WeblateComponent(slug, this.components[slug], this.language);
-
-			if (component.slug == '3d-slicer') {
-				component.downloadTsFile(this.language);
-			}
-			
+			component.downloadTsFile(this.language);
 			this.weblateComponents.push(component);
 		}
 	}
@@ -91,6 +87,10 @@ export class WeblateComponentManager {
 				component.downloadTsFile(language);
 			}
 		}
+	}
+
+	getLanguages() {
+		return this.getWeblateComponent('3d-slicer').languages;
 	}
 	
 	isReady() {

@@ -52,7 +52,7 @@
 			<div class="row">
 				<h1 class="with-separator">Search Options</h1>
 				<form class="offset-md-3 col-md-6">
-					<div class="mb-3">
+					<!-- <div class="mb-3">
 						<label class="form-label" for="componentField">Weblate Component</label>
 						<select id="componentField" class="form-select">
 							<option value="3d-slicer">3D Slicer</option>
@@ -60,7 +60,8 @@
 							<option value="SlicerIGT">SlicerIGT</option>
 							<option value="LanguagePacks">LanguagePacks</option>
 						</select>
-					</div>
+					</div> -->
+
 					<div class="mb-3">
 						<label class="form-label" for="moduleField">Module name</label>
 						<select class="form-select" id="moduleField">
@@ -145,17 +146,36 @@
 					</div>
 					<div class="mb-3">
 						<label class="form-label" for="searchField">Text to search</label>
-						<input id="searchField" type="search" class="form-control" placeholder="" value="welcome"
+						<input id="searchField" type="search" class="form-control"
 						title="Search by the english or the translated version of a string">
 					</div>
 					<div class="mb-3">
-						<input type="checkbox" id="hideTranslatedCheckbox" title="Hide already translated strings from the result">
-						<label class="form-label" for="hideTranslatedCheckbox" title="Hide already translated strings from the result">Hide translated
+						<input class="form-check-input" type="checkbox" id="hideTranslatedCheckbox" title="Hide already translated strings from the result">
+						<label class="form-check-label" for="hideTranslatedCheckbox" title="Hide already translated strings from the result">Hide translated
 						strings</label>
 					</div>
 					<div class="mb-3">
-						<!-- <label class="form-label" for="searchField">Text to search</label> -->
 						<input id="searchButton" type="button" class="form-control btn btn-primary" value="Search">
+					</div>
+					<div class="mb-3">
+						<a href="#" class="form-control btn btn-primary mb3" data-bs-toggle="collapse" data-bs-target="#componentsList"
+							title="Modify default Weblate Components list to search in">
+							Modify Weblate Components <span class="mx-1"><i class="fa fa-caret-down"></i></span></i>
+						</a>
+						<div id="componentsList" class="collapse collapse-show form-control mx3">
+							<!-- <div class="input-group mb-2">
+								<div class="input-group-text">
+									<input class="form-check-input mt-0" type="checkbox" value="3d-slicer" checked
+								</div>
+								<label class="form-control">3D Slicer</label>
+							</div>
+							<div class="input-group mb-2">
+								<div class="input-group-text">
+									<input class="form-check-input mt-0" type="checkbox" value="ctk" checked
+								</div>
+								<label class="form-control">CTK</label>
+							</div> -->
+						</div>
 					</div>
 				</form>
 			</div>
@@ -237,58 +257,7 @@
 				<div class="modal-body" style="text-align: center;">
 					<div class="mb-3">
 						<label for="languageList" class="form-label">Translation language</label>
-						<select id="languageList" class="form-select">
-							<option value="en">English</option>
-							<option value="af">Afrikaans</option>
-							<option value="ar_SA">Arabic (Saudi Arabia)</option>
-							<option value="ar">Arabic</option>
-							<option value="bn">Bengali</option>
-							<option value="ca">Catalan</option>
-							<option value="cs">Czech</option>
-							<option value="da">Danish</option>
-							<option value="de">German</option>
-							<option value="el">Greek</option>
-							<option value="en_US">English (United States)</option>
-							<option value="es_419">Spanish (Latin America)</option>
-							<option value="es">Spanish</option>
-							<option value="fi">Finnish</option>
-							<option value="fil">Filipino</option>
-							<option value="fr" selected="">French</option>
-							<option value="he">Hebrew</option>
-							<option value="hi">Hindi</option>
-							<option value="hu">Hungarian</option>
-							<option value="id">Indonesian</option>
-							<option value="it">Italian</option>
-							<option value="ja">Japanese</option>
-							<option value="km">Khmer (Central)</option>
-							<option value="ko">Korean</option>
-							<option value="nl">Dutch</option>
-							<option value="nb_NO">Norwegian Bokmål</option>
-							<option value="otk">Kokturk</option>
-							<option value="pl">Polish</option>
-							<option value="pt_BR">Portuguese (Brazil)</option>
-							<option value="pt_PT">Portuguese (Portugal)</option>
-							<option value="ro">Romanian</option>
-							<option value="ru">Russian</option>
-							<option value="sr_SP">Serbian</option>
-							<option value="sv">Swedish</option>
-							<option value="ta">Tamil</option>
-							<option value="tr">Turkish</option>
-							<option value="uk">Ukrainian</option>
-							<option value="uz">Uzbek</option>
-							<option value="vi">Vietnamese</option>
-							<option value="zh_Hans">Chinese (Simplified Han script)</option>
-							<option value="zh_Hant">Chinese (Traditional Han script)</option>
-							<option value="zgh">Tamazight (Standard Moroccan)</option>
-							<option value="fa">Persian</option>
-							<option value="ur">Urdu</option>
-							<option value="lt">Lithuanian</option>
-							<option value="pt">Portuguese</option>
-							<option value="sw">Swahili</option>
-							<option value="ang">English (Old)</option>
-							<option value="ab">Abkhazian</option>
-							<option value="te">Telugu</option>
-						</select>
+						<select id="languageList" class="form-select"></select>
 					</div>
 				</div>
 				<div class="modal-footer">

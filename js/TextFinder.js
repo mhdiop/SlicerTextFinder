@@ -8,6 +8,9 @@ export class TextFinder {
 	}
 
 	searchTextInComponent(componentName, moduleName, searchText, hideTranslated) {
+		if (!searchText.trim() && !hideTranslated) {
+			return [];
+		}
 		const component = this.componentManager.getWeblateComponent(componentName)
 		// console.log(`${componentName}, ${moduleName}, ${searchText}, ${hideTranslated} `);
 		// console.log(component);
@@ -36,7 +39,15 @@ export class TextFinder {
         return foundMessages;
 	}
 
-	searchTextInComponents(searchText, components) {
+	searchTextInComponents(componentSlugs, moduleName, searchText, hideTranslated) {
+		// console.log(componentSlugs);
+		const foundMessages = [];
+		let usedModuleName;
+		for (const slug of componentSlugs) {
+			usedModuleName = (slug == '3d-slicer') ? moduleName : undefined;
+			foundMessages.push(...this.searchTextInComponent(slug, usedModuleName, searchText, hideTranslated));
+		}
 
+		return foundMessages;
 	}
 }

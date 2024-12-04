@@ -24,11 +24,13 @@ class AppManager {
 		const modulesData = this.componentsManager.getModulesData(moduleNames);
 		if (!this.homePage) {
 			this.homePage = new HomePage(componentsData, modulesData)
+			this.searchPage = new SearchPage(this.componentsManager);
+
+			this.appView.loadLanguageList(this.componentsManager.getLanguages());
 		} else {
 			this.homePage.setChartsData(componentsData, modulesData);
 		}
 		this.homePage.render();
-		new SearchPage(this.componentsManager);
 	}
 
 	onLanguageChanged(language) {
@@ -55,6 +57,7 @@ class AppManagerView {
 		this.searchMenuButton = optionsBar.children[2];
 		this.homePage = document.querySelector('#homePage');
 		this.searchPage = document.querySelector('#searchPage');
+		this.languageList = document.querySelector('#languageList');
 
 		this.bindEvents();
 	}
@@ -84,5 +87,15 @@ class AppManagerView {
 			this.searchPage.hidden = false;
 			this.homePage.hidden = true;
 		}
+	}
+
+	loadLanguageList(languages) {
+		let languageOptions = '';
+
+		Object.keys(languages).forEach(code => {
+			languageOptions += `<option value="${code}" ${code == this.appManager.language ? "selected":""}>${languages[code].name}</option>`;
+		});
+
+		this.languageList.innerHTML = languageOptions;
 	}
 }

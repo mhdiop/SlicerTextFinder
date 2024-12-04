@@ -16,13 +16,17 @@ export class SearchPage {
 	getFormData() {
 		return this.pageView.getFormData();
 	}
+
+	getComponents() {
+		return this.componentManager.components;
+	}
 }
 
 class SearchPageView {
 
 	constructor(searchPage) {
 		this.searchPage = searchPage;
-		this.componentField = document.getElementById('componentField');
+		// this.componentField = document.getElementById('componentField');
 		this.moduleField = document.getElementById('moduleField');
 		this.searchField = document.getElementById('searchField');
 		this.stringTable = document.getElementById('stringTable');
@@ -30,16 +34,25 @@ class SearchPageView {
 		this.foundStringBox = document.getElementById('foundStringBox');
 		this.searchForm = document.querySelector('#searchPage form');
 		this.hideTranslatedCheckbox = document.getElementById('hideTranslatedCheckbox');
+		this.componentsList = document.getElementById('componentsList');
+		this.componentsItems = this.componentsList.getElementsByClassName('form-check-input mt-0');
 
+		this.loadComponentList();
 		this.bindEvents();
 	}
 
 	bindEvents() {
-		this.componentField.onchange = () => this.searchPage.pageModel.onComponentNameChanged(this.componentField.value);
+		// this.componentField.onchange = () => this.searchPage.pageModel.onComponentNameChanged(this.componentField.value);
 		this.moduleField.onchange = () => this.searchPage.pageModel.onModuleNameChanged(this.moduleField.value);
 		this.searchField.oninput = () => this.searchPage.pageModel.onSearchFieldInputted(this.searchField.value);
 		this.searchButton.onclick = () => this.searchPage.pageModel.onSearchButtonClicked();
 		this.hideTranslatedCheckbox.onchange = () => this.searchPage.pageModel.onHideTranslatedCheckboxChanged(this.hideTranslatedCheckbox.checked);
+
+		for (const component of this.componentsItems) {
+			component.onchange = () => {
+				this.searchPage.pageModel.onComponentNameChanged(component.value, component.checked);
+			}
+		};
 
 
 		// deny form submission
@@ -54,13 +67,40 @@ class SearchPageView {
 		}
 	}
 
+	loadComponentList() {
+		const components = this.searchPage.getComponents();
+		// let componentOptions = '';
+		let componentItems = '';
+
+		for (const slug of Object.keys(components)) {
+			// componentOptions += `<option value="${slug}">${components[slug]}</option>`;
+			componentItems += `
+				<div class="input-group mb-2">
+					<div class="input-group-text">
+						<input class="form-check-input mt-0" type="checkbox" value="${slug}"
+							id="${slug}-item" ${['3d-slicer', 'ctk'].includes(slug) ? 'checked' : ''}>
+					</div>
+					<label class="form-control" for="${slug}-item">${components[slug]}</label>
+				</div>
+			`;
+		}
+
+		// this.componentField.innerHTML = componentOptions;
+		this.componentsList.innerHTML = componentItems;
+	}
+
 	getFormData() {
+		const componentStates = {};
+		for (const component of this.componentsItems) {
+			componentStates[component.value] = component.checked;
+		}
+
 		return {
-			componentName: this.componentField.value,
+			// componentName: this.componentField.value,
 			moduleName: this.moduleField.value,
 			searchText: this.searchField.value,
 			hideTranslatedText: this.hideTranslatedCheckbox.checked,
-
+			componentStates: componentStates
 		}
 	}
 
@@ -145,15 +185,16 @@ class SearchPageModel {
 	constructor(searchPage) {
 		this.searchPage = searchPage;
 		const formData = searchPage.getFormData();
-		this.componentName = formData.componentName;
+		// this.componentName = formData.componentName;
 		this.moduleName = formData.moduleName;
 		this.searchText = formData.searchText;
 		this.hideTranslatedText = formData.hideTranslatedText;
+		this.componentStates = formData.componentStates;
 		this.textFinder = new TextFinder(searchPage);
 	}
 
-	onComponentNameChanged(componentName) {
-		this.componentName = componentName;
+	onComponentNameChanged(component, checked) {
+		this.componentStates[component] = checked;
 	}
 
 	onModuleNameChanged(moduleName) {
@@ -170,7 +211,9 @@ class SearchPageModel {
 	}
 
 	onSearchButtonClicked() {
-		const foundMessages = this.textFinder.searchTextInComponent(this.componentName, this.moduleName, this.searchText, this.hideTranslatedText);
+		// console.log(this.componentStates);
+		const componentNames = Object.keys(this.componentStates).filter(key => this.componentStates[key]);
+		const foundMessages = this.textFinder.searchTextInComponents(componentNames, this.moduleName, this.searchText, this.hideTranslatedText);
 		this.searchPage.showSearchResults(foundMessages);
 	}
 }
