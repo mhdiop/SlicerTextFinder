@@ -96,7 +96,7 @@ class SearchPageView {
 		for (const moduleName of Object.keys(statistics).sort()) {
 			modulesOptions += `
 				<option value="${moduleName}">
-					${moduleName} [${statistics[moduleName].translated_percent}% of ${statistics[moduleName].total} strings]
+					${moduleName} [${statistics[moduleName]} strings]
 				</option>`;
 		}
 		this.moduleField.innerHTML = modulesOptions;

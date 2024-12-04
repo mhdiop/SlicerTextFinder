@@ -100,15 +100,10 @@ export class WeblateComponentManager {
 	getAllModulesStats() {
 		const slicerComponent = this.getWeblateComponent('3d-slicer');
 		let moduleNames = Object.keys(slicerComponent.messagesByModule)
-		const statistics = slicerComponent.getModuleStats(moduleNames);
-		let percent;
+		const statistics = {};
 
 		for (const moduleName of moduleNames) {
-			percent = statistics[moduleName];
-			statistics[moduleName] = {
-				translated_percent: percent,
-				total: slicerComponent.messagesByModule[moduleName].length
-			};
+			statistics[moduleName] = slicerComponent.messagesByModule[moduleName].length
 		}
 
 		return statistics;
