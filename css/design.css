@@ -3,11 +3,7 @@ header{
 	background-color: rgb(38, 72, 123);
 	color: lightskyblue;
 	font-size: 2.5em;
-	/* font-weight: bold; */
-	font-family: "Agency FB";
-	font-family: "Arial Narrow";
-	font-family: "Comic Sans MS";
-	font-family: "Poiret One";
+	font-family: "Poiret One", sans-serif;
 }
 header, main {
 	text-align: center;
@@ -17,16 +13,20 @@ main h1 {
 	margin-bottom: 20px;
 	color: rgb(255, 145, 13);
 	font-size: 1.2em;
-	font-family: "Agency FB";
-	font-family: "Comic Sans MS";
+	font-family: 'Josefin Sans', sans-serif;
 }
 header .options-bar {
 	display: inline-block;
-	text-align: right;
+	text-align: center;
 	font-size: .7em;
 	padding-top: .7%;
 	/* border: solid red 2px; */
-
+}
+/* for medium devices and more (md equivalent) */
+@media (min-width: 768px) {
+    header .options-bar {
+		text-align: right;
+	}
 }
 header .options-bar *[class*="fa-"] {
 	cursor: pointer;
@@ -75,7 +75,7 @@ main table tbody tr:hover {
     color: rgb(255, 145, 13);
 	/* background-color: rgba(0, 0, 0, 0.8); */
 	font-size: 1.2em;
-	font-family: "Comic Sans MS";
+	font-family: "Josefin Sans", sans-serif;
 }
 .loader {
     position: fixed;
@@ -107,4 +107,5 @@ main table tbody tr:hover {
 }
 #foundStringBox {
     color: tomato;
+	font-family: 'Quantico', sans-serif;
 }

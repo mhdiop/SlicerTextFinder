@@ -11,6 +11,12 @@
 	<script src="lib/chart.min.js"></script>
 	<script type="module" src="js/app.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/js/all.min.js" integrity="sha512-6sSYJqDreZRZGkJ3b+YfdhB3MzmuP9R7X1QZ6g5aIXhRvR1Y/N/P47jmnkENm7YL3oqsmI6AK+V6AD99uWDnIw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<!-- Google Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Poiret+One&family=Quantico:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+		rel="stylesheet">
 </head>
 <body>
 	<div class="container-fluid">
@@ -25,16 +31,16 @@
 		<main id="homePage">
 			<section class="row">
 				<aside class="col-md-6 text-center">
-					<h1>Slicer Core Translation Status</h1>
+					<h1 class="mt-3">Slicer Core Translation Status</h1>
 					<canvas id="myChart"></canvas>
 				</aside>
 				<aside class="col-md-6 text-center">
-					<h1>Modules Translation Status</h1>
+					<h1 class="mt-3">Modules Translation Status</h1>
 					<canvas id="secondChart"></canvas>
 				</aside>
 			</section>
 			<section class="row">
-				<h1 class="with-separator">Other Components Status</h1>
+				<h1 class="mt-4">Other Components Status</h1>
 				<aside class="offset-md-1 col-md-10">
 					<table class="table table-hover table-bordered">
 						<thead>
@@ -50,7 +56,7 @@
 		</main>
 		<main id="searchPage" hidden>
 			<div class="row">
-				<h1 class="with-separator">Search Options</h1>
+				<h1 class="mt-3">Search Options</h1>
 				<form class="offset-md-3 col-md-6">
 					<!-- <div class="mb-3">
 						<label class="form-label" for="componentField">Weblate Component</label>
