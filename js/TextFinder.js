@@ -3,17 +3,13 @@ export class TextFinder {
 	constructor(searchPage) {
 		this.searchPage = searchPage;
 		this.componentManager = searchPage.componentManager;
-		// console.log(this.componentManager);
-		// this.currentComponentIndex = 0;
 	}
 
 	searchTextInComponent(componentName, moduleName, searchText, hideTranslated) {
-		if (!searchText.trim() && !hideTranslated) {
+		if (!searchText.trim()) {
 			return [];
 		}
 		const component = this.componentManager.getWeblateComponent(componentName)
-		// console.log(`${componentName}, ${moduleName}, ${searchText}, ${hideTranslated} `);
-		// console.log(component);
 
 		const language = component.language;
 		let messageList = component.messagesByLanguage[language];
@@ -25,7 +21,6 @@ export class TextFinder {
         if (moduleName) {
             messageList = component.messagesByModule[moduleName];
         }
-		// console.log(messageList);
         searchText = searchText.toLowerCase();
         const foundMessages = [];
         for (const message of messageList) {
@@ -40,7 +35,6 @@ export class TextFinder {
 	}
 
 	searchTextInComponents(componentSlugs, moduleName, searchText, hideTranslated) {
-		// console.log(componentSlugs);
 		const foundMessages = [];
 		let usedModuleName;
 		for (const slug of componentSlugs) {

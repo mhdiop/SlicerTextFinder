@@ -92,6 +92,27 @@ export class WeblateComponentManager {
 	getLanguages() {
 		return this.getWeblateComponent('3d-slicer').languages;
 	}
+
+	getModuleNames() {
+		return Object.keys(this.getWeblateComponent('3d-slicer').messagesByModule);
+	}
+
+	getAllModulesStats() {
+		const slicerComponent = this.getWeblateComponent('3d-slicer');
+		let moduleNames = Object.keys(slicerComponent.messagesByModule)
+		const statistics = slicerComponent.getModuleStats(moduleNames);
+		let percent;
+
+		for (const moduleName of moduleNames) {
+			percent = statistics[moduleName];
+			statistics[moduleName] = {
+				translated_percent: percent,
+				total: slicerComponent.messagesByModule[moduleName].length
+			};
+		}
+
+		return statistics;
+	}
 	
 	isReady() {
 		if (!this.weblateComponents[0] || !this.weblateComponents[0].tsFileIsDownloaded) {

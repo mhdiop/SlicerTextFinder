@@ -20,13 +20,16 @@ export class SearchPage {
 	getComponents() {
 		return this.componentManager.components;
 	}
+
+	getModulesStats() {
+		return this.componentManager.getAllModulesStats();
+	}
 }
 
 class SearchPageView {
 
 	constructor(searchPage) {
 		this.searchPage = searchPage;
-		// this.componentField = document.getElementById('componentField');
 		this.moduleField = document.getElementById('moduleField');
 		this.searchField = document.getElementById('searchField');
 		this.stringTable = document.getElementById('stringTable');
@@ -38,11 +41,11 @@ class SearchPageView {
 		this.componentsItems = this.componentsList.getElementsByClassName('form-check-input mt-0');
 
 		this.loadComponentList();
+		this.loadModulesList();
 		this.bindEvents();
 	}
 
 	bindEvents() {
-		// this.componentField.onchange = () => this.searchPage.pageModel.onComponentNameChanged(this.componentField.value);
 		this.moduleField.onchange = () => this.searchPage.pageModel.onModuleNameChanged(this.moduleField.value);
 		this.searchField.oninput = () => this.searchPage.pageModel.onSearchFieldInputted(this.searchField.value);
 		this.searchButton.onclick = () => this.searchPage.pageModel.onSearchButtonClicked();
@@ -69,11 +72,9 @@ class SearchPageView {
 
 	loadComponentList() {
 		const components = this.searchPage.getComponents();
-		// let componentOptions = '';
 		let componentItems = '';
 
 		for (const slug of Object.keys(components)) {
-			// componentOptions += `<option value="${slug}">${components[slug]}</option>`;
 			componentItems += `
 				<div class="input-group mb-2">
 					<div class="input-group-text">
@@ -85,8 +86,20 @@ class SearchPageView {
 			`;
 		}
 
-		// this.componentField.innerHTML = componentOptions;
 		this.componentsList.innerHTML = componentItems;
+	}
+
+	loadModulesList() {
+		const statistics = this.searchPage.getModulesStats();
+		let modulesOptions = '<option value="">All modules</option>';
+
+		for (const moduleName of Object.keys(statistics).sort()) {
+			modulesOptions += `
+				<option value="${moduleName}">
+					${moduleName} [${statistics[moduleName].translated_percent}% of ${statistics[moduleName].total} strings]
+				</option>`;
+		}
+		this.moduleField.innerHTML = modulesOptions;
 	}
 
 	getFormData() {
@@ -96,7 +109,6 @@ class SearchPageView {
 		}
 
 		return {
-			// componentName: this.componentField.value,
 			moduleName: this.moduleField.value,
 			searchText: this.searchField.value,
 			hideTranslatedText: this.hideTranslatedCheckbox.checked,
@@ -185,7 +197,6 @@ class SearchPageModel {
 	constructor(searchPage) {
 		this.searchPage = searchPage;
 		const formData = searchPage.getFormData();
-		// this.componentName = formData.componentName;
 		this.moduleName = formData.moduleName;
 		this.searchText = formData.searchText;
 		this.hideTranslatedText = formData.hideTranslatedText;
@@ -211,7 +222,6 @@ class SearchPageModel {
 	}
 
 	onSearchButtonClicked() {
-		// console.log(this.componentStates);
 		const componentNames = Object.keys(this.componentStates).filter(key => this.componentStates[key]);
 		const foundMessages = this.textFinder.searchTextInComponents(componentNames, this.moduleName, this.searchText, this.hideTranslatedText);
 		this.searchPage.showSearchResults(foundMessages);
