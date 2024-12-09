@@ -24,6 +24,10 @@ export class SearchPage {
 	getModulesStats() {
 		return this.componentManager.getAllModulesStats();
 	}
+
+	getMessageDetails(stringId) {
+		return this.componentManager.getMessageDetails(stringId);
+	}
 }
 
 class SearchPageView {
@@ -39,6 +43,9 @@ class SearchPageView {
 		this.hideTranslatedCheckbox = document.getElementById('hideTranslatedCheckbox');
 		this.componentsList = document.getElementById('componentsList');
 		this.componentsItems = this.componentsList.getElementsByClassName('form-check-input mt-0');
+
+		this.detailBox = document.getElementById('detailBox');
+		this.detailBoxItems = this.detailBox.getElementsByTagName('td');
 
 		this.loadComponentList();
 		this.loadModulesList();
@@ -66,6 +73,13 @@ class SearchPageView {
 		this.searchField.onkeyup = (e) => {
 			if (e.key == 'Enter') {
 				this.searchButton.click();
+			}
+		}
+
+		// Hide detail box at ESC key press
+		this.detailBox.onkeyup = (e) => {
+			if (e.key == 'Escape') {
+				this.detailBox.hidden = true;
 			}
 		}
 	}
@@ -125,7 +139,7 @@ class SearchPageView {
 
 		if (foundMessages.length != 0) {
 			tableBody.innerHTML = this.messagesToHtml(foundMessages);;
-			// this.addShowDetailEvents(tableBody);
+			this.addShowDetailEvents(tableBody);
 		}
 	}
 
@@ -190,6 +204,29 @@ class SearchPageView {
 		}
 
 		return searchText;
+	}
+
+	showStringDetails(stringId) {
+		let details = this.searchPage.getMessageDetails(stringId);
+		this.detailBoxItems[0].innerHTML = details.modules.join("<br>");
+		this.detailBoxItems[1].innerHTML = details.key;
+		this.detailBoxItems[2].innerHTML = details.source;
+		this.detailBoxItems[3].innerHTML = details.translation;
+		this.detailBoxItems[4].innerHTML = details.locations.join("<br>");
+
+		this.detailBox.hidden = false;
+		this.detailBox.focus(); // so that it closes when the ESC key is typed
+	}
+
+	addShowDetailEvents(resultBoxElement) {
+		const links = resultBoxElement.querySelectorAll('a[stringId]');
+
+		for (const link of links) {
+			link.onclick = () => {
+				this.showStringDetails(link.getAttribute('stringId'));
+				return false;
+			}
+		}
 	}
 }
 

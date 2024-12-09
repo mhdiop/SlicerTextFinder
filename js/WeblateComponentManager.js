@@ -108,6 +108,19 @@ export class WeblateComponentManager {
 
 		return statistics;
 	}
+
+	getMessageDetails(stringId) {
+        let [component, index] = stringId.split('|');
+        let weblateComponent = this.getWeblateComponent(component);
+        let message = weblateComponent.messagesByLanguage[this.language][index];
+        return {
+            'modules': message.modules,
+            'key': message.getContext(),
+            'locations': message.getLocations(),
+            'source': message.getSource(),
+            'translation': message.getTranslation()
+        };
+    }
 	
 	isReady() {
 		if (!this.weblateComponents[0] || !this.weblateComponents[0].tsFileIsDownloaded) {

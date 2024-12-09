@@ -339,7 +339,11 @@ class Message {
 	}
 
 	getModulesAsString() {
-		return Array.from(new Set(this.modules)).toString();
+		return this.getModules().toString();
+	}
+
+	getLocations() {
+		return this.locations;
 	}
 
 	// whether or not the string has many locations
