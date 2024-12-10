@@ -53,8 +53,8 @@ class AppManagerView {
 		this.appManager = appManager;
 		this.loaderBox = document.getElementById('loaderBox');
 		const optionsBar = document.querySelector('header .options-bar');
-		this.dashBoardMenuButton = optionsBar.children[0];
-		this.searchMenuButton = optionsBar.children[2];
+		this.dashBoardMenuButton = optionsBar.children[2];
+		this.searchMenuButton = optionsBar.children[0];
 		this.homePage = document.querySelector('#homePage');
 		this.searchPage = document.querySelector('#searchPage');
 		this.languageList = document.querySelector('#languageList');
