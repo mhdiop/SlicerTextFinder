@@ -6,7 +6,7 @@ export class TextFinder {
 	}
 
 	searchTextInComponent(componentName, moduleName, searchText, hideTranslated) {
-		if (!searchText.trim() && (!hideTranslated || !moduleName)) {
+		if (!searchText.trim() && !moduleName) {
 			return [];
 		}
 		const component = this.componentManager.getWeblateComponent(componentName)
